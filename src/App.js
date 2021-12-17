@@ -49,7 +49,7 @@ const App = () => {
       <h1>Bloom Pizza</h1>
       <div className="nav">
         <Link to="/">Home</Link>
-        <Link to="/pizza">Create Pizza</Link>
+        <Link to="/pizza" id="order-pizza">Create Pizza</Link>
         <Link to="/confirmation">Past Orders</Link>
       </div>
     </div>
