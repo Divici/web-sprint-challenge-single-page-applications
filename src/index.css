@@ -5,7 +5,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: lightblue;
+  background-color: white;
 }
 
 code {
@@ -44,4 +44,12 @@ code {
 
 .nav a:last-of-type {
   margin-right: 0;
+}
+
+.home-image {
+  display: block;
+  width: 80%;
+  max-height: 500px;
+  object-fit: cover;
+  margin: 0 auto;
 }
