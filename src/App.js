@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
-import axios from 'axios';
+import schema from './validation/formSchema';
+import * as yup from 'yup';
 import { Link, Route, Switch } from 'react-router-dom';
 import PizzaForm from './components/PizzaForm';
 import Confirmation from './components/Confirmation';
@@ -14,6 +15,11 @@ const initialFormValues = {
   special: '',
 }
 
+const initialFormErrors = {
+  name: '',
+  size: '',
+}
+
 const initialOrders = [];
 const initialDisabled = true;
 
@@ -22,8 +28,17 @@ const App = () => {
   const [orders, setOrders] = useState(initialOrders);
   const [formValues, setFormValues] = useState(initialFormValues);
   const [disabled, setDisabled] = useState(initialDisabled);
+  const [formErrors, setFormErrors] = useState(initialFormErrors);
+
+  const validate = (name, value) =>{
+    yup.reach(schema, name)
+      .validate(value)
+      .then(()=> setFormErrors({...formErrors, [name]: ''}))
+      .catch(err => setFormErrors({...formErrors, [name]: err.errors[0]}))
+  }
 
   const inputChange = (name, value) =>{
+    validate(name, value);
     setFormValues({
       ...formValues, [name]: value
     })
@@ -43,6 +58,11 @@ const App = () => {
     setOrders(orders.concat(newOrder));
     setFormValues(initialFormValues);
   }
+
+  useEffect(()=>{
+    schema.isValid(formValues)
+      .then(valid => setDisabled(!valid))
+  }, [formValues])
 
   return (
     <>
@@ -74,6 +94,7 @@ const App = () => {
           change={inputChange}
           submit={orderSubmit}
           disabled={disabled}
+          errors={formErrors}
         />
       </Route>
       <Route path="/confirmation">
