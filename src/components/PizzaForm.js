@@ -15,9 +15,9 @@ export default function PizzaForm (props) {
       }
 
     return (
-        <div className='container'>
-            <h2>Customize your Pizza</h2>
+        <div>
             <form id='pizza-form' onSubmit={onSubmit}>
+                <h2>Customize your Pizza</h2>
                 <div className='name'>
                     <h3>Who is this for?</h3>
                     <label>Name: 

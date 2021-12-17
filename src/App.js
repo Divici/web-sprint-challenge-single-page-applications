@@ -71,45 +71,41 @@ const App = () => {
 
   return (
     <>
-
-    <div className="container header">
-      <h1>Bloom Pizza</h1>
-      <div className="nav">
-        <Link to="/">Home</Link>
-        <Link to="/pizza" id="order-pizza">Create Pizza</Link>
-        <Link to="/confirmation">Past Orders</Link>
+      <div className="container header">
+        <h1>Bloom Pizza</h1>
+        <div className="nav">
+          <Link to="/">Home</Link>
+          <Link to="/pizza" id="order-pizza">Create Pizza</Link>
+          <Link to="/confirmation">Past Orders</Link>
+        </div>
       </div>
-    </div>
-    <div>
-      <img
-        className='home-image'
-        src='https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb
-        -1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=c
-        rop&w=1740&q=80'
-        alt=''
-      />
-    </div>
-      
-    
-
-    <Switch>
-      <Route path="/pizza">
-        <PizzaForm 
-          values={formValues}
-          change={inputChange}
-          submit={orderSubmit}
-          disabled={disabled}
-          errors={formErrors}
+      <div>
+        <img
+          className='home-image'
+          src='https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb
+          -1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=c
+          rop&w=1740&q=80'
+          alt=''
         />
-      </Route>
-      <Route path="/confirmation">
-        <Confirmation />
-      </Route>
-      <Route path="/">
-        {/* home */}
-      </Route>
-    </Switch>
-      
+      </div>
+
+      <Switch>
+        <Route path="/pizza">
+          <PizzaForm 
+            values={formValues}
+            change={inputChange}
+            submit={orderSubmit}
+            disabled={disabled}
+            errors={formErrors}
+          />
+        </Route>
+        <Route path="/confirmation">
+          <Confirmation />
+        </Route>
+        <Route path="/">
+          {/* home */}
+        </Route>
+      </Switch>
     </>
   );
 };

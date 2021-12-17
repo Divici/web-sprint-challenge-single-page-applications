@@ -53,3 +53,15 @@ code {
   object-fit: cover;
   margin: 0 auto;
 }
+
+#pizza-form {
+  display: block;
+  text-align: center;
+  width: 80%;
+  border: 1px solid rgb(210, 210, 210);
+  border-radius: 4px;
+  box-shadow: 0px 1px 6px -2px rgb(128, 127, 127);
+  padding: 1% 0;
+  background-color: white;
+  margin: 1% auto;
+}
