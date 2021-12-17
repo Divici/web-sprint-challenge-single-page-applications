@@ -30,7 +30,7 @@ code {
 }
 
 .nav {
-  width: 10%;
+  width: 20%;
   display: flex;
   justify-content: space-evenly;
 }

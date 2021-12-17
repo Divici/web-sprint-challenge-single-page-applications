@@ -10,10 +10,23 @@ const App = () => {
     <div className="container header">
       <h1>Lambda Eats</h1>
       <div className="nav">
-        <a>Home</a>
-        <a>Your Order</a>
+        <Link to="/">Home</Link>
+        <Link to="/pizza">Create Pizza</Link>
+        <Link to="/confirmation">Past Orders</Link>
       </div>
     </div>
+
+    <Switch>
+      <Route path="/pizza">
+        <PizzaForm />
+      </Route>
+      <Route path="/confirmation">
+        <Confirmation />
+      </Route>
+      <Route path="/">
+        {/* home */}
+      </Route>
+    </Switch>
       
     </>
   );
