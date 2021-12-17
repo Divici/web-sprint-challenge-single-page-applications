@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from "react";
+import axios from "axios";
 import schema from './validation/formSchema';
 import * as yup from 'yup';
 import { Link, Route, Switch } from 'react-router-dom';
@@ -55,8 +56,12 @@ const App = () => {
       special: formValues.special.trim(),
     }
 
-    setOrders(orders.concat(newOrder));
-    setFormValues(initialFormValues);
+    axios.post('https://reqres.in/api/orders', newOrder)
+      .then(resp=>{
+        setOrders([resp.data, ...orders]);
+      })
+      .catch(err=> console.error(err))
+      .finally(()=>setFormValues(initialFormValues)) 
   }
 
   useEffect(()=>{
