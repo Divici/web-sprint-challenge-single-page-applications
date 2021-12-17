@@ -15,11 +15,13 @@ const initialFormValues = {
 }
 
 const initialOrders = [];
+const initialDisabled = true;
 
 const App = () => {
 
   const [orders, setOrders] = useState(initialOrders);
   const [formValues, setFormValues] = useState(initialFormValues);
+  const [disabled, setDisabled] = useState(initialDisabled);
 
   const inputChange = (name, value) =>{
     setFormValues({
@@ -71,6 +73,7 @@ const App = () => {
           values={formValues}
           change={inputChange}
           submit={orderSubmit}
+          disabled={disabled}
         />
       </Route>
       <Route path="/confirmation">
