@@ -4,16 +4,42 @@ import { Link, Route, Switch } from 'react-router-dom';
 import PizzaForm from './components/PizzaForm';
 import Confirmation from './components/Confirmation';
 
+const initialFormValues = {
+  name: '',
+  size: '',
+  pepperoni: false,
+  sausage: false,
+  onions: false,
+  bacon: false,
+  special: '',
+}
+
+const initialOrders = [];
+
 const App = () => {
 
-  const initialFormValues = {
-    name: '',
-    size: '',
-    pepperoni: false,
-    sausage: false,
-    onions: false,
-    bacon: false,
-    special: '',
+  const [orders, setOrders] = useState(initialOrders);
+  const [formValues, setFormValues] = useState(initialFormValues);
+
+  const inputChange = (name, value) =>{
+    setFormValues({
+      ...formValues, [name]: value
+    })
+  }
+
+  const orderSubmit = () => {
+    const newOrder = {
+      name: formValues.name.trim(),
+      size: formValues.size,
+      pepperoni: !!formValues.pepperoni,
+      sausage: !!formValues.sausage,
+      onions: !!formValues.onions,
+      bacon: !!formValues.bacon,
+      special: formValues.special.trim(),
+    }
+
+    setOrders(orders.concat(newOrder));
+    setFormValues(initialFormValues);
   }
 
   return (
@@ -41,7 +67,11 @@ const App = () => {
 
     <Switch>
       <Route path="/pizza">
-        <PizzaForm />
+        <PizzaForm 
+          values={formValues}
+          change={inputChange}
+          submit={orderSubmit}
+        />
       </Route>
       <Route path="/confirmation">
         <Confirmation />
